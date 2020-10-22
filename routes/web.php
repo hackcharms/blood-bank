@@ -22,5 +22,15 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::view('/login', 'login')->name('login');
-// Route::get('/register/{type}', [App\Http\Controllers\Auth\RegisterController::class, 'register'])->name('register');
-// Route::get('/login/{type}', [App\Http\Controllers\Auth\Login::class, 'login'])->name('login');
+Route::get('/register', function () {
+    return view('register');
+})->name('register');
+Route::get('/register/{type}', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])
+    ->where('type', 'hospital|consumer')
+    ->name('register.form');
+Route::get('/login', function () {
+    return view('login');
+})->name('login');
+Route::get('/login/{type}', [App\Http\Controllers\Auth\Login::class, 'login'])
+    ->where('type', 'hospital|consumer')
+    ->name('login.form');

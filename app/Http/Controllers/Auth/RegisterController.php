@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller
 {
@@ -45,6 +46,24 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+
+    /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showRegistrationForm($type)
+    {
+        $userType =
+            [
+                'consumer' => User::TYPE_CONSUMER,
+                'hospital' => User::TYPE_HOSPITAL
+            ];
+        $type = $userType[$type];
+        return view('auth.register', compact('type'));
+    }
+
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -53,18 +72,18 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        $validated = Validator::make($data, [
+        return $validated = Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'type' => ['required'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'blood_group' => [
+                Rule::requiredIf(function () use ($data) {
+                    return $data['type'] == User::TYPE_CONSUMER ? true : false;
+                }),
+                'string', 'size:10'
+            ],
+            'password' => ['required', 'string', 'min:80', 'confirmed'],
+            'type' => ['required', 'numeric'],
         ]);
-        $validated->after(function ($data) {
-            if ($data->type == User::TYPE_CONSUMER) {
-                // Blood Group Validation Rule;
-
-            }
-        });
     }
 
     /**
@@ -78,6 +97,8 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'type' => $data['type'],
+            'blood_group' => $data['blood_group'] ?? '',
             'password' => Hash::make($data['password']),
         ]);
     }

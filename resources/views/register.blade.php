@@ -16,7 +16,7 @@
                 <h5 class="card-title">Do you save lives? </h5>
                 <p class="card-text">Register yourself as Blood Bank.</p>
                 <p class=" py-4 d-flex justify-content-center">
-                    <a href="#" class="btn btn-primary">Bank Registration</a>
+                    <a href="{{route('register.form',['type'=>'hospital'])}}" class="btn btn-primary">Bank Registration</a>
                 </p>
             </div>
             </div>
@@ -34,7 +34,7 @@
                     <h5 class="card-title">Do you need Blood ?</h5>
                     <p class="card-text">Register yourself as Blood Bank.</p>
                     <p class=" py-4 d-flex justify-content-center">
-                        <a href="#" class="btn btn-primary">Register as Consumer</a>
+                        <a href="{{route('register.form',['type'=>'consumer'])}}" class="btn btn-primary">Register as Consumer</a>
                     </p>
                 </div>
             </div>
