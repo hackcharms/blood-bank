@@ -32,10 +32,10 @@ class LoginController extends Controller
     protected function redirectTo()
     {
         if (Auth::user()->type == User::TYPE_HOSPITAL) {
-            return '/hospital';
+            return route('hospital.dashboard');
         }
 
-        return '/consumer';
+        return route('consumer.hospitals');
     }
 
     /**
