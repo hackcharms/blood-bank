@@ -67,7 +67,11 @@
                     </div>
                 </div>
                 @empty
-                    
+                    <div class="">
+                        <h2 class="text-danger">
+                            No Hospitals Available
+                            </h2>
+                    </div>
                 @endforelse
                 
                 {{-- <div class="card bg-light mb-3 text-gray-400 border-0 p-2 px-4 rounded-0 col-11 col-md-4">

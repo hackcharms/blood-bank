@@ -13,7 +13,10 @@ class ConsumerController extends Controller
     {
         $hospitals = User::hospital()->latest()->get();
         $hospital = $hospitals->first();
-        $available_blood_groups = $hospital->blood_store->where('unit', '>', 0);
+        $available_blood_groups = [];
+        if ($hospital) {
+            $available_blood_groups = $hospital->blood_store->where('unit', '>', 0);
+        }
         return view('consumer', compact('hospitals', 'available_blood_groups'));
     }
     public function showHospital(Request $request, User $hospital)
