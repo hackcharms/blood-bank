@@ -20,8 +20,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('plugins/grid-gallery/css/grid-galley.min.css') }}" rel="stylesheet">
-    @stack('script')
+    @stack('css')
 </head>
 <body>
     <div id="app">
@@ -59,6 +58,9 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item text-danger" href="{{ route('consumer.profile.show') }}">
+                                        {{ __('Profile') }}
+                                    </a>
                                     <a class="dropdown-item text-danger" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -68,6 +70,7 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
+                                    
                                 </div>
                             </li>
                         @endguest

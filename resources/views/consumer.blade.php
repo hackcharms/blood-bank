@@ -53,8 +53,7 @@
                                 </div>
                         <p class="card-text">
                             <address>
-                                82, Quadirabad, Domariyaganj
-                                Siddharth Nagar Uttar Pradesh 272189 
+                                {{$hospital->address}} 
                             </address>
                         </p>
                         <p>
@@ -62,7 +61,7 @@
                         </p>
                         <p class="text-right pt-4 px-3">
                             <a href="{{route('consumer.showHospital',$hospital)}}" class="btn rounded-0 btn-danger">
-                            Request Blood
+                            Show Deatil & Request Blood
                             </a>
                         </p>
                     </div>

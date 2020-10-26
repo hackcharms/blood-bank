@@ -37265,14 +37265,45 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/js/BloodBank.js":
+/*!***********************************!*\
+  !*** ./resources/js/BloodBank.js ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  toggleTags: function toggleTags(selectors) {
+    selectors.forEach(function (element) {
+      if ($(element).hasClass('d-none')) {
+        $(element).removeClass('d-none');
+      } else {
+        $(element).addClass('d-none');
+      }
+    });
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _BloodBank__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BloodBank */ "./resources/js/BloodBank.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
+__webpack_require__(/*! ./sb-admin-2 */ "./resources/js/sb-admin-2.js");
+
+
+window.BloodBank = _BloodBank__WEBPACK_IMPORTED_MODULE_0__["default"];
 
 /***/ }),
 
@@ -37318,6 +37349,74 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/sb-admin-2.js":
+/*!************************************!*\
+  !*** ./resources/js/sb-admin-2.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function ($) {
+  "use strict"; // Start of use strict
+  // Toggle the side navigation
+
+  $("#sidebarToggle, #sidebarToggleTop").on('click', function (e) {
+    $("body").toggleClass("sidebar-toggled");
+    $(".sidebar").toggleClass("toggled");
+
+    if ($(".sidebar").hasClass("toggled")) {
+      $('.sidebar .collapse').collapse('hide');
+    }
+
+    ;
+  }); // Close any open menu accordions when window is resized below 768px
+
+  $(window).resize(function () {
+    if ($(window).width() < 768) {
+      $('.sidebar .collapse').collapse('hide');
+    }
+
+    ; // Toggle the side navigation when window is resized below 480px
+
+    if ($(window).width() < 480 && !$(".sidebar").hasClass("toggled")) {
+      $("body").addClass("sidebar-toggled");
+      $(".sidebar").addClass("toggled");
+      $('.sidebar .collapse').collapse('hide');
+    }
+
+    ;
+  }); // Prevent the content wrapper from scrolling when the fixed side navigation hovered over
+
+  $('body.fixed-nav .sidebar').on('mousewheel DOMMouseScroll wheel', function (e) {
+    if ($(window).width() > 768) {
+      var e0 = e.originalEvent,
+          delta = e0.wheelDelta || -e0.detail;
+      this.scrollTop += (delta < 0 ? 1 : -1) * 30;
+      e.preventDefault();
+    }
+  }); // Scroll to top button appear
+
+  $(document).on('scroll', function () {
+    var scrollDistance = $(this).scrollTop();
+
+    if (scrollDistance > 100) {
+      $('.scroll-to-top').fadeIn();
+    } else {
+      $('.scroll-to-top').fadeOut();
+    }
+  }); // Smooth scrolling using jQuery easing
+
+  $(document).on('click', 'a.scroll-to-top', function (e) {
+    var $anchor = $(this);
+    $('html, body').stop().animate({
+      scrollTop: $($anchor.attr('href')).offset().top
+    }, 1000, 'easeInOutExpo');
+    e.preventDefault();
+  });
+})(jQuery); // End of use strict
 
 /***/ }),
 

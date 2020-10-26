@@ -15,11 +15,11 @@
   <script src="{{ asset('js/app.js') }}" defer></script>
 
   <!-- Custom fonts for this template-->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
 
 </head>
 
@@ -69,6 +69,13 @@
           <span>Avilable Blood</span></a>
       </li>
       <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+      <li class="nav-item @if (Route::is('hospital.profile.show')) active @endif">
+        <a class="nav-link" href="{{route('hospital.profile.show')}}">
+          {{-- <i class="fas fa-fw fa-tachometer-alt"></i> --}}
+          <i class="fas fa-user"></i>
+          <span>Profile</span></a>
+      </li>
       <hr class="sidebar-divider d-none d-md-block">
 
       <!-- Sidebar Toggler (Sidebar) -->
@@ -190,13 +197,13 @@
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle " href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-300 small">{{Auth::user()->name}}</span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                <i class="fas fa-user "></i>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="{{route('hospital.profile.show')}}">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
@@ -273,23 +280,8 @@
     </div>
   </div>
 
-  <!-- Bootstrap core JavaScript-->
-  {{-- <script src="vendor/jquery/jquery.min.js"></script> --}}
-  {{-- <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> --}}
-
-  <!-- Core plugin JavaScript-->
-  <script src="{{asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>
-
-  <!-- Custom scripts for all pages-->
-  
-  <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
-
-  <!-- Page level plugins -->
-  <script src="{{asset('vendor/chart.js/Chart.min.js')}}"></script>
-
-  @stack('script')
   <!-- Page level custom scripts -->
-  {{-- <script src="{{asset('js/chart-pie-dashboard.js')}}"></script> --}}
+  @stack('script')
 
 </body>
 

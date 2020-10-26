@@ -9,13 +9,13 @@ use Illuminate\Support\Facades\Auth;
 
 class HospitalController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware([
-            'auth',
-            'hospital'
-        ]);
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware([
+    //         'auth',
+    //         'hospital'
+    //     ]);
+    // }
     public function Dashboard()
     {
         $user = Auth::user();

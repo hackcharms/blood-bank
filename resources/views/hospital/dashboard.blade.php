@@ -312,6 +312,9 @@
 
 </div>
 @push('script')
+
+  <!-- Page level plugins -->
+  <script src="{{asset('vendor/chart.js/Chart.min.js')}}"></script>
     <script>
     // Set new default font family and font color to mimic Bootstrap's default styling
     Chart.defaults.global.defaultFontFamily = 'Nunito',

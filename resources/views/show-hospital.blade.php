@@ -76,22 +76,21 @@
                                 </tbody>
                             </table>
                 </div>
+                @guest
+                <h4 class="py-2 text-danger">
+                    Please register youself to make blood request (Login if already registered). 
+                </h4>
+                @endguest
                 <form action="{{route('consumer.sendRequest',$hospital)}}" method="POST">
                     <div class="d-flex flex-wrap">
                             <h4 class="col-4">
                                 Make Blood Request
                             </h4>
-                            <div class="input-group mb-3 col-8 justify-content-end">
+                            <div class="input-group mb-3 col-8 justify-content-end ">
                                     @csrf
-                                    <select name="blood_group" class="form-control col-2 @error('blood_group') is-invalid @enderror" placeholder="Units" aria-label="Units" aria-describedby="No of Unit">
-                                        <option value="" selected>Select</option>
-                                        @foreach ($availableBlood as $blood)
-                                        <option value="{{$blood->blood_group}}" @if ($blood->blood_group==old('blood_group')) selected="true" @endif>{{$blood->blood_group}}</option>
-                                        @endforeach
-                                    </select>
-                                    <input type="number" min="0" name="unit" value="{{old('unit')}}" class="form-control mx-4 col-2 @error('unit') is-invalid @enderror" placeholder="Units" aria-label="Units" aria-describedby="button-addon2">
+                                    <input type="number" min="0" name="unit" value="{{old('unit')}}" class="form-control mx-4 col-2 @error('unit') is-invalid @enderror" placeholder="Units" aria-label="Units" aria-describedby="button-addon2" @guest disabled @endguest>
                                     <div class="input-group-append">
-                                        <button class="btn btn-success" type="submit" id="button-addon2">Request</button>
+                                        <button class="btn btn-success" type="submit" id="button-addon2" @guest disabled @endguest>Request</button>
                                     </div>
                                     @error('blood_group')
                                         <span class="invalid-feedback" role="alert">
@@ -106,6 +105,7 @@
                                     @enderror
                             </div>
                     </div>
+                    
                 </form>
                 </div>
             </div>

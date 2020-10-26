@@ -39,12 +39,12 @@ class BloodRequest extends Model
     // }
     public function getRequestedToAttribute()
     {
-        return User::find($this->hospital_id)->first()->name;
+        return User::find($this->hospital_id)->name;
     }
 
     public function getRequestedByAttribute()
     {
-        return User::find($this->consumer_id)->first()->name;
+        return User::find($this->consumer_id)->name;
     }
     public function getIsPendingAttribute()
     {

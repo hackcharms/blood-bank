@@ -1,10 +1,14 @@
 @extends('layouts.app')
+@push('css')
+        <!-- Styles -->
+    <link href="{{ asset('plugins/grid-gallery/css/grid-gallery.min.css') }}" rel="stylesheet">
+@endpush
 @section('content')    
         <header class="continer-fluid ">
             <div id="menu-jk" class="header-bottom">
                 <div class="container">
                     <div class="row nav-row">
-                        <div class="col-md-3 logo">
+                        <div class="col-md-2 logo">
                             <img src="{{asset('images/logo.jpg')}}" alt="">
                         </div>
                         <div class="col-md-9 nav-col">
@@ -42,6 +46,10 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="#contact">{{__('Contact US')}}</a>
                                         </li>
+                                        
+                                        <li class="nav-item">
+                                            <a class="nav-link text-danger" href="{{route('consumer.hospitals')}}">{{__('Request Blood')}}</a>
+                                        </li>
                                     </ul>
                                 </div>
                             </nav>
@@ -67,14 +75,13 @@
                     <img class="d-block w-100" src="{{asset('images/slider/slide-02.jpg')}}" alt="First slide">
                     <div class="carousel-caption d-none d-md-block">
                         <h5 class=" bounceInDown">{{__('Donate Blood & Save a Life')}}</h5>
-                        <p class=" bounceInLeft">{{__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam justo neque, <br>
-                            aliquet sit amet elementum vel, vehicula eget eros. Vivamus arcu metus, mattis <br>
-                            sed sagittis at, sagittis quis neque. Praesent.')}}</p>
+                        <h3 class="bounceInDown text-center text-danger font-weight-bold">{{__('Click on Below Button For Blood Request')}}</h3>
+                        <p class=" bounceInLeft">{{__('Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins. ')}}</p>
 
                         <div class=" vbh">
 
-                            <div class="btn btn-success  bounceInUp"> {{__('Book Appointment')}} </div>
-                            <div class="btn btn-success  bounceInUp"> {{__('Contact US')}} </div>
+                            {{-- <div class="btn btn-success  bounceInUp"> {{__('Book Appointment')}} </div> --}}
+                            <a href="{{route('consumer.hospitals')}}" class="btn btn-success  bounceInUp"> {{__('Request Blood')}} </a>
                         </div>
                     </div>
                 </div>
@@ -83,16 +90,13 @@
                     <img class="d-block w-100" src="{{asset('images/slider/slide-03.jpg')}}" alt="Third slide">
                     <div class="carousel-caption vdg-cur d-none d-md-block">
                         <h5 class=" bounceInDown">{{__('Donate Blood & Save a Life')}}</h5>
+                        <h3 class="bounceInDown text-center">{{__('Click on Below Button For Blood Request')}}</h3>
                         <p class=" bounceInLeft">
-                            {{('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam justo neque, <br>
-                            aliquet sit amet elementum vel, vehicula eget eros. Vivamus arcu metus, mattis <br>
-                            sed sagittis at, sagittis quis neque. Praesent.')}}
+                            {{('Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins. ')}}
                             </p>
 
                         <div class=" vbh">
-
-                            <div class="btn btn-danger  bounceInUp"> {{__('Donate Now')}} </div>
-                            <div class="btn btn-danger  bounceInUp"> {{__('Contact US')}} </div>
+                            <a href="{{route('consumer.hospitals')}}" class="btn btn-success  bounceInUp"> {{__('Request Blood')}} </a>
                         </div>
                     </div>
                 </div>
@@ -117,16 +121,16 @@
         <div class="row session-title">
             <h2>{{__('About Us')}}</h2>
             <p>
-                {{__('Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has')}}
+                {{__('Quickly design and customize responsive mobile-first sites with Bootstrap.')}}
             </p>
         </div>
             <div class="row">
                 <div class="col-md-6 text">
                     <h2>{{__('About Blood Doners')}}</h2>
-                    <p>{{__('Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.')}}</p>
-                    <p> {{__('It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.')}}</p>
-                    <p>{{__('There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some formhumour, or randomised words which don\'t look even slightly believable. If you are going to use a passage. industry\'s standard dummy has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.')}}</p>
-                    <p>{{__('Industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.')}}</p>
+                    <p>{{__('Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.')}}</p>
+                    <p> {{__('Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.')}}</p>
+                    <p>{{__('Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins. ')}}</p>
+                    <p>{{__('Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins. ')}}</p>
                 </div>
                 <div class="col-md-6 image">
                     <img src="{{asset('images/about.jpg')}}" alt="">
@@ -192,14 +196,14 @@
         <div class="container">
         <div class="row session-title">
             <h2>{{__('Donation Process')}}</h2>
-            <p>{{__('The donation process from the time you arrive center until the time you leave')}}</p>
+            <p>{{__('Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.')}}</p>
         </div>
             <div class="row">
                 <div class="col-md-3 col-sm-6 vd">
                     <div class="bkjiu">
                     <img src="{{asset('images/gallery/g1.jpg')}}" alt="">
                     <h4><b>1 - </b>{{__('Registration')}}</h4>
-                    <p>{{__('Ut wisi enim ad minim veniam, quis laore nostrud exerci tation ulm hedi corper turet suscipit lobortis')}}</p>
+                    <p>{{__('Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, responsive grid system and powerful JavaScript plugins. ')}}</p>
                     <button class="btn btn-sm btn-danger">{{__('Readmore')}} <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
@@ -207,7 +211,7 @@
                     <div class="bkjiu">
                     <img src="{{asset('images/gallery/g2.jpg')}}" alt="">
                         <h4><b>2 - </b>{{__('Seeing')}}</h4>
-                    <p>{{__('Ut wisi enim ad minim veniam, quis laore nostrud exerci tation ulm hedi corper turet suscipit lobortis')}}</p>
+                    <p>{{__('Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid.')}}</p>
                     <button class="btn btn-sm btn-danger">{{__('Readmore')}} <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
@@ -215,7 +219,7 @@
                     <div class="bkjiu">
                     <img src="{{asset('images/gallery/g3.jpg')}}" alt="">
                         <h4><b>3 - </b>{{__('Donation')}}</h4>
-                    <p>{{__('Ut wisi enim ad minim veniam, quis laore nostrud exerci tation ulm hedi corper turet suscipit lobortis')}}</p>
+                    <p>{{__('Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system.')}}</p>
                     <button class="btn btn-sm btn-danger">{{__('Readmore')}} <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
@@ -223,7 +227,7 @@
                     <div class="bkjiu">
                         <img src="{{asset('images/gallery/g4.jpg')}}" alt="">
                         <h4><b>4 - </b>{{__('Save Life')}}</h4>
-                        <p>{{__('Ut wisi enim ad minim veniam, quis laore nostrud exerci tation ulm hedi corper turet suscipit lobortis')}}</p>
+                        <p>{{__('Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system.')}}</p>
                         <button class="btn btn-sm btn-danger">{{__('Readmore')}} <i class="fas fa-arrow-right"></i></button>
                     </div> 
                 </div>
@@ -241,7 +245,7 @@
             <div class="container">
                 <div class="session-title row">
                 <h2>{{__('Latest Blog')}}</h2>
-                <p>{{__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fringilla vel nisl a dictum. Donec ut est arcu. Donec hendrerit velit consectetur adipiscing elit')}}.</p>
+                <p>{{__('Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins. ')}}.</p>
                 </div>
                 <div class="row news-row">
                     <div class="col-md-6">
@@ -251,7 +255,7 @@
                             </div>
                             <div class="detail">
                                 <h3>{{__('Latest News about Us')}}</h3>
-                                <p>{{__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fringilla vel nisl a dictum. Donec ut est arcu. Donec hendrerit consectetur adipiscing elit. ')}}</p>
+                                <p>{{__('Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins.')}}</p>
                                 <p class="footp">
                                     {{__('27 Comments')}} <span>/</span>
                                     {{__('Blog Design')}} <span>/</span>
@@ -283,7 +287,7 @@
                             </div>
                             <div class="detail">
                                 <h3>{{__('About Windows 10 Update')}}</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fringilla vel nisl a dictum. Donec ut est arcu. Donec hendrerit consectetur adipiscing elit. </p>
+                                <p>Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins.</p>
                                 <p class="footp">
                                     {{__('27 Comments')}} <span>/</span>
                                     {{__('Blog Design')}} <span>/</span>
@@ -299,7 +303,7 @@
                             </div>
                             <div class="detail">
                                 <h3>{{__('Latest News about Us')}}</h3>
-                                <p>{{__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fringilla vel nisl a dictum. Donec ut est arcu. Donec hendrerit consectetur adipiscing elit. ')}}</p>
+                                <p>{{__('Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins.')}}</p>
                                 <p class="footp">
                                     {{__('27 Comments')}} <span>/</span>
                                     {{__('Blog Design')}} <span>/</span>
@@ -328,7 +332,7 @@
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
                         <div class="detail">
-                            <p>{{__('46-29 Indra Street, Southernbank, Tigaione, Toranto, 3006 Canada')}}</p>
+                            <p>{{__('82,Quadirabad, DomariyaGanj,Siddharth Nagar,272189')}}</p>
                         </div>
                     </div>
                     <div class="address-row">
@@ -344,7 +348,7 @@
                             <i class="fas fa-phone"></i>
                         </div>
                         <div class="detail">
-                            <p>+91 9751791203 <br> +91 9159669599</p>
+                            <p>+91 7800887621 <br> +91 6387558710</p>
                         </div>
                     </div>
                 </div>
@@ -392,7 +396,7 @@
             <div class="footer-copy">
                 <div class="row">
                     <div class="col-lg-8 col-md-6">
-                        <p>Copyright © <a href="#">testapp.com</a> | All right reserved.</p>
+                        <p>Copyright © | All right reserved.</p>
                     </div>
                     <div class="col-lg-4 col-md-6 socila-link">
                         <ul>

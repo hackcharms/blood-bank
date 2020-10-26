@@ -19,7 +19,7 @@ class CheckHospital
     public function handle(Request $request, Closure $next)
     {
         if (Auth::user()->type !== User::TYPE_HOSPITAL) {
-            return redirect('/consumer');
+            return redirect()->route('consumer.hospitals');
         }
         return $next($request);
     }

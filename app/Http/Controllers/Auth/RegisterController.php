@@ -40,7 +40,7 @@ class RegisterController extends Controller
             return route('hospital.dashboard');
         }
 
-        return '/consumer';
+        return route('consumer.banks');
     }
 
     /**
