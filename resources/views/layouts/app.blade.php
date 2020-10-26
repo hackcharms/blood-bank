@@ -11,13 +11,17 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('plugins/grid-gallery/js/grid-gallery.min.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('plugins/grid-gallery/css/grid-galley.min.css') }}" rel="stylesheet">
+    @stack('script')
 </head>
 <body>
     <div id="app">
@@ -55,7 +59,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item text-white" href="{{ route('logout') }}"
+                                    <a class="dropdown-item text-danger" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
@@ -73,8 +77,14 @@
         </nav>
 
         <main class="">
+            <div class="raw">
+                <div class="container pt-4">
+                    @include('layouts._errors')
+                </div>
+            </div>
             @yield('content')
         </main>
     </div>
+    @stack('script')
 </body>
 </html>

@@ -34,7 +34,14 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected function redirectTo()
+    {
+        if (Auth::user()->type == User::TYPE_HOSPITAL) {
+            return route('hospital.dashboard');
+        }
+
+        return '/consumer';
+    }
 
     /**
      * Create a new controller instance.
@@ -79,9 +86,9 @@ class RegisterController extends Controller
                 Rule::requiredIf(function () use ($data) {
                     return $data['type'] == User::TYPE_CONSUMER ? true : false;
                 }),
-                'string', 'size:10'
+                'string', 'min:2', 'max:3'
             ],
-            'password' => ['required', 'string', 'min:80', 'confirmed'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
             'type' => ['required', 'numeric'],
         ]);
     }

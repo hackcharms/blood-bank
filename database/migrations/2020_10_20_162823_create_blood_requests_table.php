@@ -29,9 +29,7 @@ class CreateBloodRequestsTable extends Migration
 
             $table->unsignedInteger('unit');
 
-            $table->tinyInteger('status')
-                ->default(1);
-
+            $table->tinyInteger('status');
             $table->timestamp('requested_at')
                 ->default(now());
 

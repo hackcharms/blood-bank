@@ -14,11 +14,16 @@ class BloodRequest extends Model
         'hospital_id',
         'blood_group',
         'unit',
-        'status'
+        'status',
+        'responded_at',
+        'requested_at',
     ];
     protected $table = "blood_requests";
-    const STATUS_FAILED = 0;
-    const STATUS_SUCCESS = 1;
+    protected $attributes = [
+        'status' => 2
+    ];
+    const STATUS_DECLINED = 0;
+    const STATUS_ACCEPTED = 1;
     const STATUS_PENDING = 2;
 
     public function blood_store()
@@ -26,8 +31,40 @@ class BloodRequest extends Model
         return $this->belongsToMany(BloodStore::class);
     }
 
-    public function user()
+    // public function user()
+    // {
+    //     if($this->)
+    //     return $this->belongsToMany(User::class, 'blood_requests', 'consumer_id', 'user_id');
+    //     return $this->belongsToMany(User::class, 'blood_requests', 'consumer_id', 'user_id');
+    // }
+    public function getRequestedToAttribute()
     {
-        return $this->belongsToMany(User::class);
+        return User::find($this->hospital_id)->first()->name;
+    }
+
+    public function getRequestedByAttribute()
+    {
+        return User::find($this->consumer_id)->first()->name;
+    }
+    public function getIsPendingAttribute()
+    {
+        return $this->status === self::STATUS_PENDING;
+    }
+    public function getIsAcceptedAttribute()
+    {
+        return $this->status === self::STATUS_ACCEPTED;
+    }
+    public function getIsDeclinedAttribute()
+    {
+        return $this->status === self::STATUS_DECLINED;
+    }
+    public function scopeAccepted($query)
+    {
+        return $query->where('status', BloodRequest::STATUS_ACCEPTED);
+    }
+
+    public function scopePending($query)
+    {
+        return $query->where('status', BloodRequest::STATUS_PENDING);
     }
 }

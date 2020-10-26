@@ -24,8 +24,8 @@ class BloodStore extends Model
     {
         return $this->hasMany(BloodRequest::class);
     }
-    public function FunctionName()
+    public function scopeAvailable($query)
     {
-        # code...
+        return $query->where('unit', '>', 0);
     }
 }

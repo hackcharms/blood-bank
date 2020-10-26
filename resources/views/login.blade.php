@@ -15,7 +15,7 @@
                 </p>
                 <h5 class="card-title">Do you save lives? </h5>
                 <p class=" py-4 d-flex justify-content-center">
-                    <a href="{{route('login.form',['type'=>'hospital'])}}" class="btn btn-primary">Bank Login</a>
+                    <a href="{{route('login.form',['type'=>'hospital'])}}" class="btn btn-primary">Hospital Login</a>
                 </p>
             </div>
             </div>
