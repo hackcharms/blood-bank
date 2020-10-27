@@ -15,14 +15,14 @@
                     <div class="col-12 col-md-8">
                         <h2>{{$hospital->name}}</h2>
                         <p>
-                            Apollo Hospitals, Greams Road is the flagship facility of the Apollo Healthcare group. It has facilities and treatments across a wide spectrum of medical specialties. The high standards of medical-care has ensured a dedicated patient-base from India as well as neighboring countries. The group commands a certain respect and credibility amongst its patients. 
+                            {{$hospital->decription??'Apollo Hospitals, Greams Road is the flagship facility of the Apollo Healthcare group. It has facilities and treatments across a wide spectrum of medical specialties. The high standards of medical-care has ensured a dedicated patient-base from India as well as neighboring countries. The group commands a certain respect and credibility amongst its patients.'}} 
                         </p>
                         <p>
                             <h5 class="py-2">
                                 Conatct Details :
                             </h5>
                             <h6>
-                                Apollo Hospitals, Greams Road is the
+                                {{$hospital->address??'Appollo Hospital Gomti Nagar, Lucknow'}}
                             </h6>
                             <h6>
                                 {{$hospital->email}}

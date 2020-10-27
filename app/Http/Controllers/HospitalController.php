@@ -19,16 +19,16 @@ class HospitalController extends Controller
     public function Dashboard()
     {
         $user = Auth::user();
-        $availableBloodUnits = [
-            'A+' => 0,
-            'A-' => 0,
-            'B+' => 0,
-            'B-' => 0,
-            'AB+' => 0,
-            'AB-' => 0,
-            'O+' => 0,
-            'O-' => 0,
-        ];
+        // $availableBloodUnits = [
+        //     'A+' => 0,
+        //     'A-' => 0,
+        //     'B+' => 0,
+        //     'B-' => 0,
+        //     'AB+' => 0,
+        //     'AB-' => 0,
+        //     'O+' => 0,
+        //     'O-' => 0,
+        // ];
         foreach ($user->blood_store as $blood) {
             $availableBloodUnits[$blood->blood_group] = $blood->unit;
         }
