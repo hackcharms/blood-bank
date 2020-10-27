@@ -21,7 +21,7 @@
                             Login as Consumer
                         </h4>
                         @else
-                        {{-- <p class="d-flex justify-content-center "> --}}
+                        <p class="d-flex justify-content-center ">
                             <svg
                                 class="col-2"
                                 xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 32 32" xml:space="preserve">
