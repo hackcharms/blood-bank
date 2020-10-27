@@ -18,10 +18,18 @@ class BloodRequest extends Model
         'responded_at',
         'requested_at',
     ];
+
     protected $table = "blood_requests";
+
+    /**
+     * Set Default Values
+     * 
+     */
+
     protected $attributes = [
         'status' => 2
     ];
+
     const STATUS_DECLINED = 0;
     const STATUS_ACCEPTED = 1;
     const STATUS_PENDING = 2;
@@ -31,12 +39,6 @@ class BloodRequest extends Model
         return $this->belongsToMany(BloodStore::class);
     }
 
-    // public function user()
-    // {
-    //     if($this->)
-    //     return $this->belongsToMany(User::class, 'blood_requests', 'consumer_id', 'user_id');
-    //     return $this->belongsToMany(User::class, 'blood_requests', 'consumer_id', 'user_id');
-    // }
     public function getRequestedToAttribute()
     {
         return User::find($this->hospital_id)->name;

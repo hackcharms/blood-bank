@@ -21,7 +21,8 @@ class ProfileController extends Controller
             'description' => 'nullable|string',
             'address' => 'nullable|string'
         ]);
-        if (Auth::user()->fill($request->all())->save()) {
+        $detailsUpdated = Auth::user()->fill($request->all())->save();
+        if ($detailsUpdated) {
             return back()->with('success', 'Details Updated');
         } else {
             return back()->with('error', 'Unexpected Error');

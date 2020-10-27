@@ -9,13 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class HospitalController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware([
-    //         'auth',
-    //         'hospital'
-    //     ]);
-    // }
+
     public function Dashboard()
     {
         $user = Auth::user();
@@ -43,7 +37,9 @@ class HospitalController extends Controller
             'unit' => 'required|numeric'
         ]);
         $bloodStore = Auth::user()->blood_store->where('blood_group', $request->blood_group);
-        ($bloodStore->first()->update(['unit' => $bloodStore->first()->unit + abs($request->unit)]));
+        $bloodStore->first()->update([
+            'unit' => $bloodStore->first()->unit + abs($request->unit)
+        ]);
         return back();
     }
     public function handleBloodRequests(Request $request)
@@ -59,11 +55,20 @@ class HospitalController extends Controller
             if ($bloodStock->unit < $bloodRequest->unit) {
                 return back()->with('error', 'Can not proceed Request, Blood insufficient');
             }
-            if ($bloodRequest->fill(['status' => BloodRequest::STATUS_ACCEPTED, 'responded_at' => now()])->save()) {
-                $bloodStock->fill(['unit' => $bloodStock->unit - $bloodRequest->unit])->save();
+            $requestAccepted = $bloodRequest->fill(['status' => BloodRequest::STATUS_ACCEPTED, 'responded_at' => now()])->save();
+            if ($requestAccepted) {
+                $bloodStock->fill([
+
+                    'unit' => $bloodStock->unit - $bloodRequest->unit
+
+                ])->save();
+
                 return back()->with('success', "Data Approved");
+
             } else {
+
                 return back()->with('error', 'failed Could not Update data');
+                
             }
         }
         if (strtolower($request->status) == 'decline') {

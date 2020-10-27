@@ -55,6 +55,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(BloodStore::class, 'hospital_id', 'id');
     }
+
     public function blood_requests()
     {
         if ($this->type == self::TYPE_HOSPITAL) {
@@ -62,14 +63,17 @@ class User extends Authenticatable
         }
         return $this->hasMany(BloodRequest::class, 'consumer_id', 'id');
     }
+
     public function getIsConsumerAttribute()
     {
         return $this->type === self::TYPE_CONSUMER;
     }
+
     public function getIsHospitalAttribute()
     {
         return $this->type === self::TYPE_HOSPITAL;
     }
+
     public function scopeHospital($query)
     {
         return $query->whereType(self::TYPE_HOSPITAL);
@@ -82,9 +86,6 @@ class User extends Authenticatable
     public static function boot()
     {
         parent::boot();
-        // static::creating(function ($model) {
-        //     dd($model, "model Creating");
-        // });
         static::created(function ($model) {
             $bloodGroups = [
                 'A+',
@@ -104,8 +105,5 @@ class User extends Authenticatable
                 ]);
             }
         });
-        // static::updating(function ($model) {
-        //     dd($model, "model updating");
-        // });
     }
 }
