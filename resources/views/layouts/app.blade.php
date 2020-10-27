@@ -29,7 +29,13 @@
                 <div class="container">
                     <div class="row nav-row">
                         <div class="col-md-2 logo">
+<<<<<<< HEAD
                             <img src="{{asset('images/logo.jpg')}}" alt="">
+=======
+                        <a href="{{route('home')}}">
+                            <img src="{{asset('images/logo.jpg')}}" alt="">
+                        </a>
+>>>>>>> bfc812ffc265db29d05282bb7bb0531d13dc714d
                         </div>
                         <div class="col-md-10 nav-col">
                             <nav class="navbar navbar-expand-lg navbar-light">
@@ -46,10 +52,19 @@
                                 </button>
                                 <div class="collapse navbar-collapse" id="navbarNav">
                                     <ul class="navbar-nav">
+<<<<<<< HEAD
                                         <li class="nav-item active">
                                             <a class="nav-link" href="#">{{__('Home')}}
                                             </a>
                                         </li>
+=======
+                                        <li class="nav-item @if(Route::is('home')) active @endif">
+                                            <a class="nav-link" href="{{route('home')}}">{{__('Home')}}
+                                            </a>
+                                        </li>
+                                        @if (Route::is('home'))
+                                            
+>>>>>>> bfc812ffc265db29d05282bb7bb0531d13dc714d
                                         <li class="nav-item">
                                             <a class="nav-link" href="#about">{{__('About')}} Us</a>
                                         </li>
@@ -60,6 +75,7 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="#contact">{{__('Contact US')}}</a>
                                         </li>
+<<<<<<< HEAD
                                         
                                         <li class="nav-item">
                                             <a class="nav-link " href="{{route('consumer.hospitals')}}">{{__('Hosptals')}}</a>
@@ -70,6 +86,19 @@
                                             </li>
                                             @if (Route::has('register'))
                                                 <li class="nav-item">
+=======
+                                        @endif
+                                        
+                                        <li class="nav-item @if(Route::is('consumer.hospitals')) active @endif">
+                                            <a class="nav-link " href="{{route('consumer.hospitals')}}">{{__('Hosptals')}}</a>
+                                        </li>
+                                        @guest
+                                            <li class="nav-item @if(Route::is('login')||Route::is('login.form')) active @endif">
+                                                <a class="nav-link " href="{{ route('login') }}">{{ __('Login') }}</a>
+                                            </li>
+                                            @if (Route::has('register'))
+                                                <li class="nav-item @if(Route::is('register') ||Route::is('register.form')) active @endif">
+>>>>>>> bfc812ffc265db29d05282bb7bb0531d13dc714d
                                                     <a class="nav-link " href="{{ route('register') }}">{{ __('Register') }}</a>
                                                 </li>
                                             @endif
