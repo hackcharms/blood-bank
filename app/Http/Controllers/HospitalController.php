@@ -19,16 +19,6 @@ class HospitalController extends Controller
     public function Dashboard()
     {
         $user = Auth::user();
-        // $availableBloodUnits = [
-        //     'A+' => 0,
-        //     'A-' => 0,
-        //     'B+' => 0,
-        //     'B-' => 0,
-        //     'AB+' => 0,
-        //     'AB-' => 0,
-        //     'O+' => 0,
-        //     'O-' => 0,
-        // ];
         foreach ($user->blood_store as $blood) {
             $availableBloodUnits[$blood->blood_group] = $blood->unit;
         }
@@ -49,12 +39,19 @@ class HospitalController extends Controller
     }
     public function AddBlood(Request $request)
     {
+        $request->validate([
+            'unit' => 'required|numeric'
+        ]);
         $bloodStore = Auth::user()->blood_store->where('blood_group', $request->blood_group);
         ($bloodStore->first()->update(['unit' => $bloodStore->first()->unit + abs($request->unit)]));
         return back();
     }
     public function handleBloodRequests(Request $request)
     {
+        $request->validate([
+            'status' => 'string',
+            'request_id' => 'numeric',
+        ]);
         $user = Auth::user();
         $bloodRequest = BloodRequest::findOrFail($request->request_id);
         if (strtolower($request->status) == 'approved') {
