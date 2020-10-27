@@ -1,3 +1,15 @@
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://github.com/hackcharms/blood-bank/blob/master/public/images/logo.jpg" width="400"></a></p>
+
+## About Blood Bank
+Blood Bank is a web application that help to find Bloods Quickly. Its a platform that helps Consumer to find Hospitals (Blood Banks) that has required blood group. 
+
+## **[Live Preview](http://bloodserve.herokuapp.com/)**
+
+### key Features
+   - **User can register as connsumer or as Hospital (Bank)**
+   - **Conusmer can request blood to any avilable Hospitals**
+   - **Hospital can Respond to blood Request Accordingly**
+<!----------------------------------------Laravel Sections------------------------------------------------------->
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
