@@ -88,9 +88,9 @@
                             </h4>
                             <div class="input-group mb-3 col-8 justify-content-end ">
                                     @csrf
-                                    <input type="number" min="0" name="unit" value="{{old('unit')}}" class="form-control mx-4 col-2 @error('unit') is-invalid @enderror" placeholder="Units" aria-label="Units" aria-describedby="button-addon2" @guest disabled @endguest>
+                                    <input type="number" min="0" name="unit" value="{{old('unit')}}" class="form-control mx-4 col-2 @error('unit') is-invalid @enderror" placeholder="Units" aria-label="Units" aria-describedby="button-addon2" @guest disabled @else @if(Auth::user()->is_hospital) disabled @endif @endguest>
                                     <div class="input-group-append">
-                                        <button class="btn btn-success" type="submit" id="button-addon2" @guest disabled @endguest>Request</button>
+                                        <button class="btn btn-success" type="submit" id="button-addon2" @guest disabled @else @if(Auth::user()->is_hospital) disabled @endif @endguest>Request</button>
                                     </div>
                                     @error('blood_group')
                                         <span class="invalid-feedback" role="alert">

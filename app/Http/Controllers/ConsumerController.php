@@ -27,19 +27,23 @@ class ConsumerController extends Controller
     }
     public function sendRequest(Request $request, User $hospital)
     {
-        $request->validate([
-            'unit' => 'required|numeric'
-        ]);
         $user = Auth::user();
-        if ($hospital->blood_store()->whereBloodGroup($user->blood_group)->first()->unit > $request->unit) {
-            BloodRequest::create([
-                'consumer_id' => $user->id,
-                'hospital_id' => $hospital->id,
-                'blood_group' => $user->blood_group,
-                'unit' => $request->unit
+        if ($user->is_consumer) {
+
+            $request->validate([
+                'unit' => 'required|numeric'
             ]);
-            return back()->with('success', 'Request Generated');
+            if ($hospital->blood_store()->whereBloodGroup($user->blood_group)->first()->unit > $request->unit) {
+                BloodRequest::create([
+                    'consumer_id' => $user->id,
+                    'hospital_id' => $hospital->id,
+                    'blood_group' => $user->blood_group,
+                    'unit' => $request->unit
+                ]);
+                return back()->with('success', 'Request Generated');
+            }
+            return back()->with('error', 'Insufficient Blood');
         }
-        return back()->with('error', 'Insufficient Blood');
+        return back()->with('error', 'Only Consumer can request for Blood ');
     }
 }
